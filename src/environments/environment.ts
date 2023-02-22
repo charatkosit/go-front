@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  loginResult: "loginResult",
+  baseUrl: "",
+  loginUrl: "127.0.0.1:3000",
+  backendUrl: "http://18.138.229.104:3000/",
+  sapUrl:"http://192.168.20.17:8880/",
+  sapToken:"z@hz3sNY#0ohB9SspeE9@fLDQ%r65x$k8LxL28VH72FfvRWgCn",
+  project: "Build Dev:v0.1.4f on 27/01/23",
+  release: "0.0.1",
+
 };
 
 /*

@@ -1,0 +1,70 @@
+<div class="row justify-content-center align-items-center"  style="height:71vh;">
+    <!--<div class="container-items-center row justify-content-center bg-info align-items-center" style="height:82vh;">-->
+        
+    <div class="login-box ">
+      <div class="login-logo">
+        <a href="#"><b>GO</b>PLUS</a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="card">
+        <div class="card-body login-card-body">
+          <p class="login-box-msg"><b>Login</b> to start your session</p>
+  
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Email" formControlName="Email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+              <!-- <div *ngIf="loginForm.controls['emailFm'].invalid && (loginForm.controls['emailFm'].dirty || loginForm.controls['emailFm'].touched)" class="alert alert-danger">
+                <div *ngIf="loginForm.controls['emailFm'].errors?.['required']">
+                  Person Business is required.
+                </div>
+              </div> -->
+            </div>
+            <div class="input-group mb-3">
+              <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" placeholder="Password" formControlName="Password" >
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <!-- <span class="fas fa-lock"></span> -->
+                  <i class="fa" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                  (mouseleave)="showPassword = !showPassword" (mouseover)="showPassword = !showPassword"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">
+                    Remember Me
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" [disabled]="loginForm.controls['Email'].invalid || loginForm.controls['Password'].invalid " 
+                 class="btn btn-primary btn-block">Sign In</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+          <!-- /.social-auth-links -->
+  
+          <p class="mb-1" routerLinkActive="active">
+            <a routerLink="/forgot">I forgot my password</a>
+  
+           
+          </p>
+          <p class="mb-0" routerLinkActive="active">
+            <a routerLink="/register" class="text-center">Register a new membership</a>
+          </p>
+        </div>
+        <!-- /.login-card-body -->
+      </div>
+    </div>
+  
+  </div>
+  

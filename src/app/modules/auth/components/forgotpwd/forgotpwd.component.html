@@ -1,0 +1,45 @@
+<div class="container d-flex align-items-center" style="height:70vh;">
+
+    <div class="login-box offset-md-4">
+      <div class="login-box">
+        <div class="login-logo">
+          <b>GP </b>Forgot Password
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+          <div class="card-body login-card-body">
+            <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+  
+            <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+              
+              <div class="input-group mb-3">
+                <input type="email" name="EmailAddress"  formControlName="EmailAddress" class="form-control" placeholder="Email">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <button type="submit" [disabled]="!FormData.valid" class="btn btn-primary btn-block">Request new password</button>
+              </div>
+              <!-- /.col -->
+  
+            </form>
+  
+            <p class="mt-3 mb-1" routerLinkActive="active">
+              <a routerLink="/login">Login</a>
+            </p>
+            <p class="mb-0" routerLinkActive="active">
+              <a routerLink="/register" class="text-center">Register a new membership</a>
+            </p>
+          </div>
+          <!-- /.login-card-body -->
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  

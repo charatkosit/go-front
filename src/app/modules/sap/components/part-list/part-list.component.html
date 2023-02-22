@@ -1,0 +1,152 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <div class="col-md-10 offset-md-1">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Part List</h1>
+          </div>
+          <div class="col-sm-6 d-flex flex-row justify-content-end ">
+            <div class="nav-item text-right" routerLinkActive="active">
+              <a routerLink="/shop" class="nav-link" role="button">
+                <i class="fa fa-list"></i>
+              </a>
+            </div>
+  
+  
+            <div class="breadcrumb mt-1">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Part List</li>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  
+  
+    <!-- Main content -->
+    <section class="content">
+  
+  
+        <div class="container-fluid">
+      <!-- <div class="col-md-10 offset-md-1"> -->
+        <div class="row">
+          <div class="col-12">
+  
+   <div class="card">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch(searchForm.value)" novalidate>
+      <div class="menu-customer">
+        <div class="row">
+  
+          <!-- <div class="col-lg-3">
+            <div class="form-group">
+              <label for="brand-form">ยี่ห้อ (3ตัว)</label>
+              <input type="text" [formControl]="brandForm" class="form-control" id="brand-form"
+                placeholder="ค้นหา">
+            </div>
+          </div> -->
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label>ยี่ห้อ</label>
+              <select class="form-control" formControlName="brand" >
+                <option value="" selected>ค้นหาทุกยี่ห้อ</option>
+                <option *ngFor="let x of mock_brand" [value]="x.brand">{{x.display}}</option>
+               </select>
+            </div>
+          </div>
+  
+  
+          <div class="col-lg-3">
+            <!-- select -->
+            <div class="form-group">
+              <label for="itemname-form">ชื่ออะไหล่</label>
+              <input type="text" formControlName="itemName" class="form-control" id="itemname-form"
+                placeholder="ชื่ออะไหล่">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <!-- select -->
+            <div class="form-group">
+              <label for="number-form">หมายเลขอะไหล่</label>
+              <input type="text"  formControlName="number"  class="form-control" id="number-form"  placeholder="หมายเลขอะไหล่">
+            </div>
+          </div>
+  
+          <div class="col-lg-3">
+            <!-- select -->
+            <div class="form-group">
+              <label for="model-form">รุ่นรถยนต์</label>
+              <input type="text"  formControlName="model" class="form-control" id="model-form" placeholder="รุ่นรถยนต์">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <button type="submit" class="bts"><i class="fa fa-search">ค้นหา</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+   </div>
+        
+            <!-- search -->
+  
+  
+  
+            <!-- /.card -->
+  
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">แสดง {{this.no_start}} - {{this.no_end}} จาก {{this.totalFound}} ผลลัพธ์ </h3>
+  
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+  
+                <table id="example1" class="table table-bordered table-striped">
+  
+                  <thead>
+                    <tr>
+                      <th>Brand</th>
+                      <th>ItemName</th>
+                      <th>Barcode</th>
+                      <th>BarcodeNew</th>
+                      <th>Model</th>
+                      <th>RetailPrice</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let part of partlist">
+                      <td>{{part.Brand}}</td>
+                      <td>{{part.ItemName}}</td>
+                      <td>{{part.ItemCode}}</td>
+                      <td>{{part.ItemCodeNew}}</td>
+                      <td>{{part.Model}}</td>
+                      <td>{{part.RetailPrice}}</td>
+                      <td><button type="button" (click)="onSelect(part.ItemCode, part.ItemName, part.RetailPrice)"
+                          class="btn btn-outline-primary btn-block toastrDefaultSuccess"><i
+                            class="fas fa-cart-plus"></i><b>
+                            เพิ่มตะกร้า</b></button></td>
+                    </tr>
+  
+                  </tbody>
+  
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  

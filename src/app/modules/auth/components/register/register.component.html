@@ -1,0 +1,93 @@
+<div class="container d-flex align-items-center" style="height:78vh;">
+  <div class="login-box offset-md-4">
+    <div class="login-logo">
+      <b>GP </b>Register
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Register to start your session</p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" novalidate>
+
+
+          <div *ngIf="registerForm.controls['Email'].invalid  && 
+            (registerForm.controls['Email'].dirty ||
+             registerForm.controls['Email'].touched)">
+            <div *ngIf="registerForm.controls['Email'].errors">
+              Email is required max 25 chars .
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input ngModel name="Email" formControlName="Email" #email type="email" 
+              placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div *ngIf="registerForm.controls['Password'].invalid  && 
+            (registerForm.controls['Password'].dirty ||
+             registerForm.controls['Password'].touched)">
+            Required between 6-20 chars.
+          </div>
+          <div class="input-group mb-3">
+            <input ngModel name="password" formControlName="Password" #pw 
+              type="{{ showPassword ? 'text' : 'password' }}" (keyup)='checkPasswords(pw.value, cpw.value)'
+              class="form-control" placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <!-- <span class="fas fa-eye-slash"></span> -->
+                <i class="fa" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                  (mouseleave)="showPassword = !showPassword" (mouseover)="showPassword = !showPassword"></i>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="input-group mb-3">
+            <input ngModel name="repassword" formControlName="RePassword" [ngClass]='confirmPasswordClass' #cpw
+              type="{{ showRePassword ? 'text' : 'password' }}" class="form-control"
+              (keyup)='checkPasswords(pw.value, cpw.value)' placeholder="Confirm-Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <!-- <span class="fas fa-lock"></span> -->
+                <i class="fa" [ngClass]="{ 'fa-eye': !showRePassword, 'fa-eye-slash': showRePassword }"
+                  (mouseleave)="showRePassword = !showRePassword" (mouseover)="showRePassword = !showRePassword"></i>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!passwordsMatching && isConfirmPasswordDirty">
+            Passwords did not match
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="isError" class="row" style="text-align: center; color :red;margin-bottom: 8px;">
+            Error, this username is already registered!
+          </div>
+
+          <div class="mb-3">
+            <button
+              [disabled]="registerForm.controls['Email'].invalid || registerForm.controls['Password'].invalid || registerForm.controls['RePassword'].invalid"
+              class="btn btn-block btn-primary" type="submit">Register</button>
+          </div>
+
+          <div class="mb-3">
+            <button (click)="onClickCancel()" class="btn btn-block btn-default" type="submit">Cancel</button>
+          </div>
+
+        </form>
+
+
+
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+</div>

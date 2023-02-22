@@ -1,0 +1,78 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+        <div class="col-md-10">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน</h3>
+            </div>
+
+            <!-- #########################################         -->
+
+            <form [formGroup]="changepwdForm" (submit)="onSubmit(changepwdForm.value)">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-10 offset-sm-1">
+                    <div class="form-group">
+                      <label for="oldPassword">รหัสผ่านเดิม</label>
+                      <div *ngIf="changepwdForm.controls['old_pass'].invalid  && 
+                    (changepwdForm.controls['old_pass'].dirty ||
+                     changepwdForm.controls['old_pass'].touched)">
+                        <div *ngIf="changepwdForm.controls['old_pass'].errors">
+                          old password is required min 20 chars .
+                        </div>
+                      </div>
+                      <input formControlName="old_pass" id="oldPassword" type="password" class="form-control"
+                        placeholder="กรุณากรอกข้อมูล">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="newPassword">รหัสผ่านใหม่</label>
+                      <input formControlName="new_pass" id="newPassword" type="password" class="form-control"
+                        placeholder="กรุณากรอกข้อมูล">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="renewPassword">ยืนยันรหัสผ่านใหม่</label>
+                      <input formControlName="cnew_pass" id="renewPassword" type="password" class="form-control"
+                        placeholder="กรุณากรอกข้อมูล">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit"
+                  [disabled]="changepwdForm.controls['old_pass'].invalid || changepwdForm.controls['new_pass'].invalid "
+                  class="btn btn-primary">
+                  เปลี่ยนรหัสผ่าน
+                </button>
+              </div>
+            </form>
+            <!-- ####################################### -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>

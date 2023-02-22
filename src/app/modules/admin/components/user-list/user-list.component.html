@@ -1,0 +1,106 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <div class="col-md-10 offset-md-1">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Members List</h1>
+          </div>
+          <div class="col-sm-6 d-flex flex-row justify-content-end ">
+            <div class="nav-item text-right" routerLinkActive="active">
+              <a routerLink="/shop" class="nav-link" role="button">
+                <i class="fa fa-list"></i>
+              </a>
+            </div>
+  
+  
+            <div class="breadcrumb mt-1">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Members List</li>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  
+  
+    <!-- Main content -->
+    <section class="content">
+  
+  
+        <div class="container-fluid">
+      <!-- <div class="col-md-10 offset-md-1"> -->
+        <div class="row">
+          <div class="col-12">
+  
+
+        
+            <!-- search -->
+  
+  
+  
+            <!-- /.card -->
+  
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">แสดง  ผลลัพธ์ </h3>
+  
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+  
+                <table id="example1" class="table table-bordered table-striped">
+  
+                  <thead>
+                    <tr>
+                      <th>รหัสลูกค้า</th>
+                      <th>ชื่อ</th>
+                      <th>รหัสลูกค้า</th>
+                      <th>อีเมล์</th>
+                      <th>Permission</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let member of memberlist">
+                      <td>{{member.UserId}}</td>
+                      <td>{{member.FullName}}</td>
+                      <td>{{member.CodeUserId}}</td>
+                      <td>{{member.email}}</td>
+                      <td>{{member.Permission}}</td>
+                      <td><button type="button" (click)="onSelect()"
+                          class="btn btn-outline-primary btn-block toastrDefaultSuccess"><i
+                            class="fas fa-cart-plus"></i><b>
+                            เพิ่มตะกร้า</b></button></td>
+                    </tr>
+  
+                  </tbody>
+  
+                  <!-- <tfoot>
+                    <tr>
+                      <th>Brand</th>
+                      <th>ItemName</th>
+                      <th>Barcode</th>
+                      <th>BarcodeNew</th>
+                      <th>Model</th>
+                      <th>Price</th>
+                      <th></th>
+                    </tr>
+                  </tfoot> -->
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
