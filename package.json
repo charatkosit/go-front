@@ -18,7 +18,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "datatable": "^2.0.2",
+    "datatable": "^0.0.6",
     "datatables.net": "^1.13.2",
     "datatables.net-dt": "^1.13.2",
     "daterangepicker": "^3.1.0",
