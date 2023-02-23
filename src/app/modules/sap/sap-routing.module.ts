@@ -7,12 +7,17 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
 import { PartListComponent } from './components/part-list/part-list.component';
 
 const routes: Routes = [
-  { path: "invoice-list", component: InvoiceListComponent },
-  { path: "cn-list", component: CnListComponent },
-  { path: "cn-details", component: CnDetailsComponent },
-  { path: "part-list", component: PartListComponent },
-  { path: "dashboard", component: DashboardComponent },
-];
+  {
+    path: '',
+    children: [
+      { path: "invoice-list", component: InvoiceListComponent },
+      { path: "cn-list", component: CnListComponent },
+      { path: "cn-details", component: CnDetailsComponent },
+      { path: "part-list", component: PartListComponent },
+      { path: "dashboard", component: DashboardComponent },
+      { path: '',           redirectTo: 'dashboard', pathMatch: 'full'}
+    ]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

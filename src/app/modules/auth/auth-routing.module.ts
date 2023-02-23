@@ -8,13 +8,23 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  // {path: "" ,pathMatch:"full",  redirectTo: "login"},
-  { path: "login", component: LoginComponent },
-  { path: "forgot", component: ForgotpwdComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "content", component: ContentComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: "changepwd", component: ChangepwdComponent }
+   { path: '' ,
+    children: [
+      { path: "login", component: LoginComponent },
+      { path: 'profile',    component: ProfileComponent},
+      { path: "content", component: ContentComponent },
+      { path: "forgot", component: ForgotpwdComponent },
+      { path: "register", component: RegisterComponent },
+      { path: 'changepwd',  component: ChangepwdComponent},
+      { path: '',           redirectTo: 'login', pathMatch: 'full'}
+    ]
+  }
+  // { path: "login", component: LoginComponent },
+  // { path: "forgot", component: ForgotpwdComponent },
+  // { path: "register", component: RegisterComponent },
+  // { path: "content", component: ContentComponent },
+  // { path: "profile", component: ProfileComponent },
+  // { path: "changepwd", component: ChangepwdComponent }
 ];
 
 @NgModule({
