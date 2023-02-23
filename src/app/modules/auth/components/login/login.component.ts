@@ -63,6 +63,6 @@ export class LoginComponent implements OnInit {
    // ตรวจสอบว่า เคยมี email นี้อยู่หรือไม่ 
    // ถ้ามี แจ้ง ว่าเคยมี  
    localStorage.setItem(environment.loginResult, "ok")
-   this.router.navigate(["/content"])
+   this.router.navigate(["/dashboard"])
    }
 }
