@@ -5,7 +5,7 @@ export const environment = {
   loginUrl: "%loginUrl%",
   backendUrl: "%backendUrl%",
   sapUrl:"%sapUrl%",
-  sapToken:"%sapToken%",
+  sapApiToken:"%sapApiToken%",
   project: "Build %stage%:%timestamp%",
   release: "%release%"
 };

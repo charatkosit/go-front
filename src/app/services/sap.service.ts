@@ -9,7 +9,7 @@ import { ApiInvoice } from '../interfaces/ApiInvoice';
 export class SapService {
   private backendUrl = environment.backendUrl
   private sapUrl = environment.sapUrl;
-  private sapToken = environment.sapToken;
+  private sapApiToken = environment.sapApiToken;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class SapService {
   getSapPartlist(partsno: string, partsname: string, brand: string, model: StringConstructor){
     const uri = `${this.sapUrl}apigoplus/EnqPartlist/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { partsno: partsno,
               partsnmae: partsname,
               brand: brand,
@@ -33,7 +33,7 @@ export class SapService {
   getSapBillTo(customer_code: string){
     const uri = `${this.sapUrl}apigoplus/GetBillTo/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { customer_code: customer_code }
     }
     const headers = new HttpHeaders({
@@ -45,7 +45,7 @@ export class SapService {
   getSapShipping(BillTocode: string){
     const uri = `${this.sapUrl}apigoplus/GetShipTo/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { BillToCode: BillTocode }
     }
     const headers = new HttpHeaders({
@@ -57,7 +57,7 @@ export class SapService {
   getSapTransport(ShipTocode: string){
     const uri = `${this.sapUrl}apigoplus/GetTransport/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { ShipToCode: ShipTocode }
     }
     const headers = new HttpHeaders({
@@ -70,7 +70,7 @@ export class SapService {
   getSapCustomerDiscount(CardCode: string, ItemCode: string){
     const uri = `${this.sapUrl}apigoplus/GetTransport/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { CardCode: CardCode,
               ItemcCode: ItemCode
       }
@@ -84,7 +84,7 @@ export class SapService {
   getSapInvoice(customer_code: string) {
     const uri = `${this.sapUrl}apigoplus/GetInv/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { customer_code: customer_code }
     }
     const headers = new HttpHeaders({
@@ -97,7 +97,7 @@ export class SapService {
   getSapCreditNoteDetails(customer_code: string, taxnumber: string, doctype: string) {
     const uri = `${this.sapUrl}apigoplus/GetInvDetails/`
     const keyword = {
-      token: this.sapToken,
+      token: this.sapApiToken,
       data: { customer_code: customer_code,
               taxnumber: taxnumber,
               doctype: doctype
