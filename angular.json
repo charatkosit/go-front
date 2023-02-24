@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ang31": {
+    "go-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
