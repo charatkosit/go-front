@@ -1,0 +1,16 @@
+{
+  "/apigoplus/*": {
+    "target": "http://192.168.20.17:8880",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": "true"
+  },
+  "/api/*": {
+    "target": "http://13.214.185.4:3000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": "true"
+  }
+
+  
+}

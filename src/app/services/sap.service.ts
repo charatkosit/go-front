@@ -82,7 +82,9 @@ export class SapService {
   }
 
   getSapInvoice(customer_code: string) {
-    const uri = `${this.sapUrl}apigoplus/GetInv/`
+    // const uri = `${this.sapUrl}apigoplus/GetInv/`
+    const uri = `apigoplus/GetInv/`
+
     const keyword = {
       token: this.sapApiToken,
       data: { customer_code: customer_code }
@@ -95,7 +97,9 @@ export class SapService {
   }
   
   getSapCreditNoteDetails(customer_code: string, taxnumber: string, doctype: string) {
-    const uri = `${this.sapUrl}apigoplus/GetInvDetails/`
+    // const uri = `${this.sapUrl}apigoplus/GetInvDetails/`
+    const uri = `apigoplus/GetInvDetails/`
+
     const keyword = {
       token: this.sapApiToken,
       data: { customer_code: customer_code,
@@ -112,7 +116,9 @@ export class SapService {
 //------------------------------------------
   getPartlistByKeyword(keyword: string){
     // keyword = ItemName=&ItemCode=&Brand=&Model=
-    const uri = `${this.backendUrl}api/v1/products/pagination?${keyword}`
+    // const uri = `${this.backendUrl}api/v1/products/pagination?${keyword}`
+    const uri = `api/v1/products/pagination?${keyword}`
+
     return this.http.get<any>(uri,{ responseType: 'json' } )
   }
 }

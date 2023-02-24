@@ -85,15 +85,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ang31-auth:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "go-front:build",
+            "proxyConfig": "src/proxy.conf.json"
             },
           "configurations": {
             "production": {
-              "browserTarget": "ang31:build:production"
+              "browserTarget": "go-front:build:production"
             },
             "development": {
-              "browserTarget": "ang31:build:development"
+              "browserTarget": "go-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,7 +101,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ang31:build"
+            "browserTarget": "go-front:build"
           }
         },
         "test": {
