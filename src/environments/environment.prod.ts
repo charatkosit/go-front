@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   loginResult: "loginResult",
   baseUrl: "",
-  loginUrl: "%loginUrl%",
+  authUrl: "%authUrl%",
   backendUrl: "%backendUrl%",
   sapUrl:"%sapUrl%",
   sapApiToken:"%sapApiToken%",

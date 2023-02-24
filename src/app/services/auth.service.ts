@@ -23,7 +23,7 @@ export class AuthService {
 
 
   login(usernamePassword: string) {
-    return this.http.post<any>(environment.loginUrl, usernamePassword,
+    return this.http.post<any>(environment.authUrl, usernamePassword,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded'

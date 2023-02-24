@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   loginResult: "loginResult",
   baseUrl: "",
-  loginUrl: "127.0.0.1:3000",
+  authUrl: "127.0.0.1:3000",
   backendUrl: "http://13.214.185.4:3000/",
   sapUrl:"http://192.168.20.17:8880/",
   sapApiToken:"z@hz3sNY#0ohB9SspeE9@fLDQ%r65x$k8LxL28VH72FfvRWgCn",
