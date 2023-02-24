@@ -18,6 +18,7 @@ export class InvoiceListComponent implements OnInit {
 
   customer_code = environment.user_code;
   sumInv:number = 0;
+  data: boolean = false;
 
   constructor(private sap: SapService,
               private share: ShareService) { }
@@ -32,6 +33,7 @@ export class InvoiceListComponent implements OnInit {
         })
          this.sumInv = data_filter.reduce((acc, item) => acc + parseFloat(item.DocTotal), 0);
          this.share.sum_INV = this.sumInv;
+         this.data = true;
 
         // console.log(data_filter)
         console.log(`sum INV is ${this.sumInv}`)

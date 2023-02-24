@@ -13,6 +13,7 @@ export class CnListComponent implements OnInit {
 
   customer_code = '10008690100';
   sumCN = 0;
+  data:boolean =false
 
   constructor(private sap: SapService,
               private share: ShareService) { }
@@ -27,6 +28,7 @@ export class CnListComponent implements OnInit {
 
         this.sumCN = data_filter.reduce((acc, item) => acc + parseFloat(item.DocTotal), 0);
         this.share.sum_CN = this.sumCN;
+        this.data = true;
         // console.log(data_filter)
         console.log(`sum is ${this.sumCN}`)
 
