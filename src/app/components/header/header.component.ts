@@ -13,12 +13,14 @@ export class HeaderComponent implements OnInit {
   project:string ='';
   sapUrl:string = '';
   release:string = '';
+  user: string = '';
  constructor(private router:Router, public auth:AuthService) { }
 
  ngOnInit(): void {
     this.project = environment.project;
     this.sapUrl = environment.sapUrl;
     this.release = environment.release;
+    this.user = environment.user;
  }
 
 

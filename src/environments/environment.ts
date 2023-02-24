@@ -11,7 +11,11 @@ export const environment = {
   sapUrl:"http://192.168.20.17:8880/",
   sapApiToken:"z@hz3sNY#0ohB9SspeE9@fLDQ%r65x$k8LxL28VH72FfvRWgCn",
   project: "Build Dev:v0.1.4f on 27/01/23",
-  release: "0.0.1",
+  release: "dev ",
+  user: "บจก. พิชิต-ชุติมา",
+  user_code: "10008690100"
+
+
 
 };
 

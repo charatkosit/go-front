@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiInvoice, Invoice } from 'src/app/interfaces/ApiInvoice';
 import { SapService } from 'src/app/services/sap.service';
 import { ShareService } from 'src/app/services/share.service';
+import { environment } from 'src/environments/environment';
 // import * as $ from 'jquery';
 // import 'datatables.net';
 declare var $: any;
@@ -15,7 +16,7 @@ declare var $: any;
 })
 export class InvoiceListComponent implements OnInit {
 
-  customer_code = '10008690100';
+  customer_code = environment.user_code;
   sumInv:number = 0;
 
   constructor(private sap: SapService,
