@@ -1,6 +1,6 @@
 {
   "name": "go-front",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,6 +26,7 @@
     "jquery": "^3.6.3",
     "jquery-knob": "^1.2.11",
     "jquery-ui-dist": "^1.13.2",
+    
     "regex": "^0.1.1",
     "rxjs": "~7.5.0",
     "summernote": "^0.8.20",
@@ -40,6 +41,7 @@
     "@types/datatables.net": "^1.10.24",
     "@types/jasmine": "~4.0.0",
     "@types/jquery": "^3.5.16",
+    "@types/ping": "^0.4.1",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

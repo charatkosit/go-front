@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiInvoice } from '../interfaces/ApiInvoice';
+import { ApiInvoiceDetails } from '../interfaces/ApiInvoiceDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class SapService {
 
 
   getSapPartlist(partsno: string, partsname: string, brand: string, model: StringConstructor){
-    const uri = `${this.sapUrl}apigoplus/EnqPartlist/`
+    // const uri = `${this.sapUrl}apigoplus/EnqPartlist/`
+    const uri = `apigoplus/EnqPartlist/`
     const keyword = {
       token: this.sapApiToken,
       data: { partsno: partsno,
@@ -31,7 +33,8 @@ export class SapService {
   }
 
   getSapBillTo(customer_code: string){
-    const uri = `${this.sapUrl}apigoplus/GetBillTo/`
+    // const uri = `${this.sapUrl}apigoplus/GetBillTo/`
+    const uri = `apigoplus/GetBillTo/`
     const keyword = {
       token: this.sapApiToken,
       data: { customer_code: customer_code }
@@ -43,7 +46,8 @@ export class SapService {
   }
 
   getSapShipping(BillTocode: string){
-    const uri = `${this.sapUrl}apigoplus/GetShipTo/`
+    // const uri = `${this.sapUrl}apigoplus/GetShipTo/`
+    const uri = `apigoplus/GetShipTo/`
     const keyword = {
       token: this.sapApiToken,
       data: { BillToCode: BillTocode }
@@ -55,7 +59,8 @@ export class SapService {
   }
 
   getSapTransport(ShipTocode: string){
-    const uri = `${this.sapUrl}apigoplus/GetTransport/`
+    // const uri = `${this.sapUrl}apigoplus/GetTransport/`
+    const uri = `apigoplus/GetTransport/`
     const keyword = {
       token: this.sapApiToken,
       data: { ShipToCode: ShipTocode }
@@ -67,19 +72,22 @@ export class SapService {
   }
 
 
-  getSapCustomerDiscount(CardCode: string, ItemCode: string){
-    const uri = `${this.sapUrl}apigoplus/GetTransport/`
+ getSapCustomerDiscount(CardCode: string, ItemCode: string){
+    // const uri = `${this.sapUrl}apigoplus/GetItemInfo/`
+    const uri = `apigoplus/GetItemInfo/`
     const keyword = {
       token: this.sapApiToken,
       data: { CardCode: CardCode,
-              ItemcCode: ItemCode
+              ItemCode: ItemCode
       }
     }
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<any>(uri,keyword,{headers})
+    const display = JSON.stringify(keyword)
+    return  this.http.post<any>(uri,keyword,{headers})
   }
+
 
   getSapInvoice(customer_code: string) {
     // const uri = `${this.sapUrl}apigoplus/GetInv/`
@@ -92,7 +100,6 @@ export class SapService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    console.log(`uri is ${uri}`)
     return this.http.post<ApiInvoice>(uri,keyword,{headers})
   }
   
@@ -113,6 +120,24 @@ export class SapService {
     return this.http.post<ApiInvoice>(uri,keyword,{headers})
   }
 
+
+  getSapInvoiceDetails(customer_code: string, taxnumber: string, doctype: string) {
+    // const uri = `${this.sapUrl}apigoplus/GetInvDetails/`
+    const uri = `apigoplus/GetInvDetails/`
+
+    const keyword = {
+      token: this.sapApiToken,
+      data: { customer_code: customer_code,
+              taxnumber: taxnumber,
+              doctype: doctype
+           }
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    console.log(`uri is ${uri}`)
+    return this.http.post<ApiInvoiceDetails>(uri,keyword,{headers})
+  }
 //------------------------------------------
   getPartlistByKeyword(keyword: string){
     // keyword = ItemName=&ItemCode=&Brand=&Model=

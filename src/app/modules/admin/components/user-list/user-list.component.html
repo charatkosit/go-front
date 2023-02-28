@@ -70,10 +70,26 @@
                       <td>{{member.CodeUserId}}</td>
                       <td>{{member.email}}</td>
                       <td>{{member.Permission}}</td>
-                      <td><button type="button" (click)="onSelect()"
-                          class="btn btn-outline-primary btn-block toastrDefaultSuccess"><i
-                            class="fas fa-cart-plus"></i><b>
-                            เพิ่มตะกร้า</b></button></td>
+                      <td>
+
+                            <button type="button" (click)="onEdit()"
+                              class="btn btn-outline-primary btn-block toastrDefaultSuccess" style="display: inline-block;"><i
+                                class="fas fa-cart-plus"></i><b>
+                                แก้ไข</b></button>
+    
+                                <button type="button" (click)="onDelete()"
+                                  class="btn btn-outline-primary btn-block toastrDefaultSuccess" style="display: inline-block;"><i
+                                    class="fas fa-cart-plus"></i><b>
+                                    ลบ</b></button>
+  
+                       
+
+                       
+
+
+                      </td> 
+
+                 
                     </tr>
   
                   </tbody>

@@ -54,11 +54,31 @@
                     </a>
                   </li>
 
+
+                  <li class="nav-item">
+                    <a routerLink="/check-discount" class="nav-link">
+                      <i class="nav-icon fas fa-th"></i>
+                      <p>
+                        Check Discount 
+                        <span *ngIf="this.share.count > 0" class="right badge badge-danger">{{this.share.count}}</span>
+                      </p>
+                    </a>
+                  </li>
+
               <li class="nav-item">
                 <a routerLink="/invoice-list" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     Invoice
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/invoice-temp" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    Invoice Temp
                     <!-- <span class="right badge badge-danger">New</span> -->
                   </p>
                 </a>

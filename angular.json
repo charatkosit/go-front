@@ -46,6 +46,7 @@
               "node_modules/daterangepicker/daterangepicker.js",
               "node_modules/jquery-knob/js/jquery.knob.js",
               "node_modules/datatables.net/js/jquery.dataTables.js"
+             
             
             ]
           },
@@ -118,7 +119,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+             
+            ]
           }
         }
       }

@@ -1,0 +1,94 @@
+<div class="loading-container">
+    <div class="loading">
+        <div  *ngIf="!isdata">
+        <i class="fa fa-sync fa-spin"></i>
+      </div>
+    </div>
+  
+  
+  
+  <div class="content-wrapper">
+  
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Invoice Temp</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Invoice Temp</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+    
+    
+    
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+            
+           
+              <!-- /.card -->
+    
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"> {{sumInv | number}}</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>DocType</th>
+                        <th>Tax Date</th>
+                        <th>Tax Number</th>
+                        <th>Ship To</th>
+                        <th>Doc Total</th>
+                        <th>Action</th>
+                       
+                       
+                      </tr>
+                    </thead>
+                    <!-- <tbody>
+                        <tr *ngFor="let item of invoice">
+                            <td>{{item.DocType}}</td>
+                            <td>{{item.TaxDate}}</td>
+                            <td>{{item.FullTaxNumber}}</td>
+                            <td></td>
+                            <td></td>
+                            <td><button type="button" (click)="onClickDetails()"
+                                class="btn btn-outline-primary btn-block toastrDefaultSuccess"><i
+                                  class="fas fa-cart-plus"></i><b>
+                                  เพิ่มตะกร้า</b></button></td>
+                            
+                        </tr>
+
+
+
+                    </tbody> -->
+  
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    
+    
+  
+  </div>

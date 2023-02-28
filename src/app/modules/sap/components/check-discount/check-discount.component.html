@@ -1,0 +1,209 @@
+<div class="loading-container">
+    <div class="loading">
+        <div  *ngIf="!isdata">
+        <i class="fa fa-sync fa-spin"></i>
+      </div>
+    </div>
+  
+  
+  
+  <div class="content-wrapper">
+  
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Check Discount</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Check Discount</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+    
+    
+    
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+            
+           
+              <!-- /.card -->
+    
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title"> </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card card-solid">
+
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+
+                          <span *ngIf="isSelect" class="float-right">
+                            <a class="btn btn-primary btn-sm" style="margin:5px" (click)="onClickEdit()">
+                              <i class="fas fa-pencil-alt"></i>Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" style="margin:5px;" (click)="onClickDelete()">
+                              <i class="fas fa-trash"></i>Delete
+                            </a>
+                          </span>
+            
+                          <span *ngIf="isEditMode" class="float-right">
+                            <a class="btn btn-warning btn-sm" style="margin:5px" (click)="onClickCancel()">
+                              <i class="fas fa-pencil-alt"></i>Cancel
+                            </a>
+                            <a class="btn btn-info btn-sm" style="margin:5px" (click)="onClickUpdate()">
+                              <i class="fas fa-pencil-alt"></i>Update
+                            </a>
+                          </span>
+            
+                  
+            
+            
+            
+            
+                          <br>
+                          <table class="table table-head-fixed table-bordered table-hover projects">
+            
+            
+                            <thead>
+                              <tr>
+                                <th class="text-center"><input *ngIf="showAllCheckBox" type="checkbox"
+                                    [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"> 
+                                    </th>
+                               <th class="text-center"> รหัสสินค้า</th>
+                                <th class="text-center">รายการ</th>
+                                <th class="text-center">จำนวน</th>
+                                <th class="text-center">ราคาต่อหน่วย</th>
+                                <th class="text-center">ยอดเงิน</th>
+                                <th class="text-center">ส่วนลด%</th>
+                                <th class="text-center">ราคาหลังรับส่วนลด</th>
+            
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of myCart; let i = index">
+                                <td class="text-center" scope="row">
+                                  <div>
+                                    <!-- <input type="checkbox"  value="{{item.ItemCode}}" [(ngModel)]="myCart[i].checked" [checked]="isCheckBoxChecked(item.ItemCode)"> {{item.ItemCode}} -->
+                                    <input type="checkbox" value="{{item.ItemCode}}" [(ngModel)]="myCart[i].Checked"
+                                      (change)="checkSingleCheckBox(item.ItemCode, $event)"> 
+            
+                                  </div>
+            
+                                </td>
+                                <td class="text-center">{{item.ItemCode}}</td>
+                                <td class="text-left">{{item.ItemName}} </td>
+                                <td class="text-center">
+                                  <div *ngIf="isEditable&&myCart[i].Checked; else elseBlock">
+                                    <input type="number" class="text-center" min="1" max="10" maxlength="1" size="1"
+                                     (change)="onChangeQty(i,$event)"  value={{item.Qty}}>
+                                  </div>
+                                  <ng-template #elseBlock>
+                                    {{item.Qty}}
+                                  </ng-template>
+            
+                                </td>
+                                <td class="text-right">{{item.RetailPrice}}</td>
+                                <td class="text-right">{{item.SumRetailPrice}}</td>
+                                <td class="text-right">ส่วนลด {{item.Discount| number:'1.2-2'}} % <br>
+                                                       ลดตาม {{item.BillDiscount}} %</td>
+                                <td class="text-right">{{item.Subtotal | number:'2.2-2'}}</td>
+            
+                              </tr>
+            
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">ราคารวม RTP</td>
+                                <td class="text-right">{{this.amountRTP | number:'2.2-2' }}</td>
+                              </tr>
+                              <tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">ราคารวม</td>
+                                <td class="text-right">{{this.amountSale | number:'2.2-2' }}</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">ราคาลดท้ายบิล </td>
+                                <td class="text-right">{{this.amountBillDiscount | number:'2.2-2'}}</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">Total</td>
+                                <td class="text-right">{{this.total | number: '2.2-2'}}</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">Vat 7%</td>
+                                <td class="text-right">{{this.vat | number: '2.2-2'}}</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">GrandTotal</td>
+                                <td class="text-right"><b>{{this.grandTotal | number: '2.2-2'}}</b></td>
+                              </tr>
+                            </tfoot>
+                          </table>
+            
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- /.card-body -->
+              </div>
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    
+    
+  
+  </div>

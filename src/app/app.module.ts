@@ -20,6 +20,8 @@ import { CartNewComponent } from './components/header/cart-new/cart-new.componen
 import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './modules/admin/admin.module';
 import { SapModule } from './modules/sap/sap.module';
+import { ShareService } from './services/share.service';
+
 
 
 @NgModule({
@@ -45,11 +47,15 @@ import { SapModule } from './modules/sap/sap.module';
     AuthModule,
     AdminModule,
     SapModule,
+
+  
     //-----------------
     AppRoutingModule,  //AppRoutingModule อยู่ด้านล่างเสมอ
   
   ],
-  providers: [ AuthService],
+  providers: [ AuthService, 
+               ShareService
+             ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

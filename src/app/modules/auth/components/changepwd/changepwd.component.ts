@@ -20,7 +20,7 @@ export class ChangepwdComponent implements OnInit {
   ngOnInit(): void {
     // แบบใหม่
     this.changepwdForm = this.fb.group({
-      oldPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      oldPassword: ['', [Validators.required, Validators.maxLength(20)]],
       newPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       renewPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]]
     })

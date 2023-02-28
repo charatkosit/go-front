@@ -64,28 +64,28 @@
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="">อีเมล์</label>
-                        <input type="text" class="form-control" formControlName="email">
+                        <label for="email">อีเมล์</label>
+                        <input type="text" class="form-control" id="email" formControlName="email">
                       </div>
 
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="">ชื่อ</label>
-                            <input type="text" class="form-control" formControlName="firstname">
+                            <label for="name">ชื่อ</label>
+                            <input type="text" class="form-control" id="name" formControlName="firstname">
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="">นามสกุล</label>
-                            <input type="text" class="form-control" formControlName="lastname">
+                            <label for="surname">นามสกุล</label>
+                            <input type="text" class="form-control" id="surname" formControlName="lastname">
                           </div>
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="">ตำแหน่ง</label>
-                        <select class="form-control" formControlName="position">
+                        <label for="position">ตำแหน่ง</label>
+                        <select class="form-control"  id="position" formControlName="position">
                           <option value="">เลือกตำแหน่งงาน</option>
                           <option *ngFor="let item of positionItems" [value]="item">
                             {{ item }}

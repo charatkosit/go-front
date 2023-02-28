@@ -6,9 +6,11 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 import { CnListComponent } from './components/cn-list/cn-list.component';
 import { PartListComponent } from './components/part-list/part-list.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CnDetailsComponent } from './components/cn-details/cn-details.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InvoiceTempComponent } from './components/invoice-temp/invoice-temp.component';
+import { CheckDiscountComponent } from './components/check-discount/check-discount.component';
 
 
 @NgModule({
@@ -19,10 +21,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     CnListComponent,
     PartListComponent,
     CnDetailsComponent,
-    DashboardComponent
+    DashboardComponent,
+    InvoiceTempComponent,
+    CheckDiscountComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     SapRoutingModule
   ]

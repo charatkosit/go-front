@@ -13,14 +13,18 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.http.get('http://127.0.0.1:3000/api/v1/auth/users').subscribe( (res:any) =>{
+     this.http.get('api/v1/auth/users').subscribe( (res:any) =>{
       console.log(res)
       this.memberlist = res;
      })
 
   }
 
-  onSelect() {
+  onDelete() {
 
+  }
+
+  onEdit() {
+    
   }
 }
