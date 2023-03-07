@@ -17,6 +17,11 @@ declare var $: any;
 })
 export class PartListComponent implements OnInit {
 
+    constructor(private fb: FormBuilder,
+        private sap: SapService,
+        private share: ShareService) { }
+
+    //-------------ประกาศตัวแปร------------------------
     searchForm!: FormGroup;
     mycart: string[] = [];
     apiPartlist!: goApiPartlist;
@@ -31,9 +36,9 @@ export class PartListComponent implements OnInit {
     modelForm = new FormControl();
     totalFound: number = 0;
 
-    customer_code = environment.user_code;
+    customer_code = this.share.customer_code;
     discount: number = 0;
-    billDiscount:number = 0;
+    billDiscount: number = 0;
     specialPrice: number = 0;
 
     keyword: string = '';
@@ -67,20 +72,14 @@ export class PartListComponent implements OnInit {
         { brand: 'TRW', display: 'TRW' },
     ];
 
-    constructor(private fb:FormBuilder,
-                private sap: SapService,
-                private share: ShareService) { }
-
+    //-------------------------------------------------------
 
     ngOnInit(): void {
-
-
-
         this.searchForm = this.fb.group({
-            brand: ['',[Validators.maxLength(10)]],
-            itemName: ['',Validators.maxLength(30)],
-            number: ['',Validators.maxLength(30)],
-            model: ['',Validators.maxLength(30)],
+            brand: ['', [Validators.maxLength(10)]],
+            itemName: ['', Validators.maxLength(30)],
+            number: ['', Validators.maxLength(30)],
+            model: ['', Validators.maxLength(30)],
         })
 
         $(function () {
@@ -100,8 +99,7 @@ export class PartListComponent implements OnInit {
 
         });
 
-        // ใส่ค่าเบื้องต้น
-        this.share.customer_code = '10019590100';
+
 
 
 
@@ -110,7 +108,7 @@ export class PartListComponent implements OnInit {
 
 
 
-    onSubmitSearch(value:any) {
+    onSubmitSearch(value: any) {
         //   รับค่าจาก template
         console.log(`value brand is ${value.brand}`)
         console.log(`value itemName is ${value.itemName}`)
@@ -145,23 +143,23 @@ export class PartListComponent implements OnInit {
         return this.partlist;
     }
 
-onSelectTest(itemCode: string, itemName: string, retailPrice: number, qty: number = 1){
-                console.log(`itemCode: ${itemCode}, customer_code: ${this.customer_code} `)
-                this.sap.getSapCustomerDiscount(this.customer_code,itemCode).subscribe( (res:any)=>{
-                const data =  res.data;
-                this.discount = data[0].Discount;
-                this.billDiscount = data[0].BillDiscount;
-               
-                console.log(`ItemCode: ${itemCode} ส่วนลด ${this.discount}  ${this.billDiscount}`)
-           })
-}
+    onSelectTest(itemCode: string, itemName: string, retailPrice: number, qty: number = 1) {
+        console.log(`itemCode: ${itemCode}, customer_code: ${this.customer_code} `)
+        this.sap.getSapCustomerDiscount(this.customer_code, itemCode).subscribe((res: any) => {
+            const data = res.data;
+            this.discount = data[0].Discount;
+            this.billDiscount = data[0].BillDiscount;
 
-onSelect(itemCode: string, itemName: string, retailPrice: number, qty: number = 1) {
-    //    หมายเหตุ ขณะเลือกสินค้า ให้ ยิง api ไปตรวจสอบ ส่วนลดสินค้าแต่ละตัวด้วย
-    //       retailPrice  = ราคาปลีก
-    //       qty          = จำนวน
-    //       discount     = ส่วนลดครั้งที่ 1  เป็น %
-    //       billDiscount = ส่วนลดครั้งที่ 2  เป็น %
+            console.log(`ItemCode: ${itemCode} ส่วนลด ${this.discount}  ${this.billDiscount}`)
+        })
+    }
+
+    onSelect(itemCode: string, itemName: string, retailPrice: number, qty: number = 1) {
+        //    หมายเหตุ ขณะเลือกสินค้า ให้ ยิง api ไปตรวจสอบ ส่วนลดสินค้าแต่ละตัวด้วย
+        //       retailPrice  = ราคาปลีก
+        //       qty          = จำนวน
+        //       discount     = ส่วนลดครั้งที่ 1  เป็น %
+        //       billDiscount = ส่วนลดครั้งที่ 2  เป็น %
 
         //check discount %
         let sumRetailPrice: number = 0;
@@ -169,21 +167,21 @@ onSelect(itemCode: string, itemName: string, retailPrice: number, qty: number = 
         let subTotal = 0
 
 
-    
- 
 
 
-//---------------------------------------
+
+
+        //---------------------------------------
         let cart: SumOrder = {    //รายบรรทัด
             ItemCode: '',
             ItemName: '',
-            RetailPrice: 0, 
+            RetailPrice: 0,
             Qty: qty,
             SumRetailPrice: 0,
             Discount: this.discount,
             BillDiscount: this.billDiscount,
             SumBillDiscount: sumBillDiscount,
-            DueDate:'',
+            DueDate: '',
             Subtotal: 0
         }
 
@@ -201,75 +199,76 @@ onSelect(itemCode: string, itemName: string, retailPrice: number, qty: number = 
             // ถ้า return -1 แสดงว่าไม่มีค่า ซ้ำ   
             // แสดงว่าเป็นรายการใหม่
             //  ให้ ถาม api  ส่วนลด
-            this.sap.getSapCustomerDiscount(this.customer_code,itemCode).subscribe( (res:any)=>{
-                const data =  res.data;
+            this.sap.getSapCustomerDiscount(this.customer_code, itemCode).subscribe((res: any) => {
+                const data = res.data;
                 this.discount = data[0].Discount;
                 this.billDiscount = data[0].BillDiscount;
-               
+
                 console.log(`ItemCode: ${itemCode} ส่วนลด ${this.discount}  ${this.billDiscount}`)
 
                 console.log(`this.discount : ${this.discount}`)
                 subTotal = retailPrice * (1 - this.discount / 100);
                 sumRetailPrice = retailPrice * qty;
-                sumBillDiscount = subTotal * (this.billDiscount /100);
+                sumBillDiscount = subTotal * (this.billDiscount / 100);
 
-                cart = { 
+                cart = {
                     ItemCode: itemCode,
-                    ItemName: itemName, 
+                    ItemName: itemName,
                     RetailPrice: retailPrice,
-                    Qty: qty, 
+                    Qty: qty,
                     SumRetailPrice: sumRetailPrice,
                     Discount: this.discount,
                     BillDiscount: this.billDiscount,
                     SumBillDiscount: sumBillDiscount,
-                    DueDate:'',
-                    Subtotal: subTotal }
-    
-                    console.log(`befor puth to sumCart ${JSON.stringify(cart)}`)
+                    DueDate: '',
+                    Subtotal: subTotal
+                }
+
+                console.log(`befor puth to sumCart ${JSON.stringify(cart)}`)
                 this.share.sumCart.push(cart)
                 this.share.count++
 
 
-           })
-           
-         } else {
+            })
+
+        } else {
             // ถ้าพบ index ให้ เอาค่า ไปดึง qty มา บวก 1 แล้ว  update
             this.share.sumCart[index].Qty++
             this.share.sumCart[index].SumRetailPrice = this.share.sumCart[index].RetailPrice * this.share.sumCart[index].Qty;
             this.share.sumCart[index].Subtotal = this.share.sumCart[index].SumRetailPrice * (1 - this.share.sumCart[index].Discount / 100)
-            this.share.sumCart[index].SumBillDiscount = this.share.sumCart[index].Subtotal * (this.share.sumCart[index].BillDiscount/100)
+            this.share.sumCart[index].SumBillDiscount = this.share.sumCart[index].Subtotal * (this.share.sumCart[index].BillDiscount / 100)
             this.share.count++
-          console.log(`sumBillDiscount: ${this.share.sumCart[index].SumBillDiscount} `)
+            console.log(`sumBillDiscount: ${this.share.sumCart[index].SumBillDiscount} `)
         }
-    
+
         // ทำการคำนวณ sum ทั้งหมด
         // AmountRTP    sum ( ราคาปลีก x จำนวน )  
-        let sum:number = 0;
-        this.share.sumCart.forEach( a => sum += a.SumRetailPrice)
+        let sum: number = 0;
+        this.share.sumCart.forEach(a => sum += a.SumRetailPrice)
         this.share.myPO.AmountRTP = sum;
         console.log(`AmountRTP: ${this.share.myPO.AmountRTP}`)
-        
+
         // AmountSale  sum of( ราคาปลีก x (100 - %ส่วนลดครั้งที่1)/100  x จำนวน)
         let sum_amountSale = 0;
-        this.share.sumCart.forEach( a => sum_amountSale += a.Subtotal)
+        this.share.sumCart.forEach(a => sum_amountSale += a.Subtotal)
         this.share.myPO.AmountSale = sum_amountSale
         console.log(`AmountSale: ${this.share.myPO.AmountSale}`)
 
         //AmountBillDiscount  ลดท้ายบิล หรือ sum of( ราคาลดแล้วครั้งที่1 x   %ส่วนลดครั้งที่2)
         let sum_amountBill = 0;
-        this.share.sumCart.forEach( a => sum_amountBill += a.SumBillDiscount )
+        this.share.sumCart.forEach(a => sum_amountBill += a.SumBillDiscount)
         this.share.myPO.AmountBillDiscount = sum_amountBill
         console.log(`AmountBillDiscount: ${this.share.myPO.AmountBillDiscount}`)
-     
+
         //Total
         let Total = 0
-        Total =sum_amountSale - sum_amountBill
+        Total = sum_amountSale - sum_amountBill
         this.share.myPO.Total = Total;
         console.log(`Total: ${this.share.myPO.Total}`)
 
         //Vat
-        let vat= 0;
-        vat  = Total * 0.07
+        let vat = 0;
+        vat = Total * 0.07
         this.share.myPO.Vat = vat
         console.log(`VAT: ${this.share.myPO.Vat}`)
 
@@ -281,7 +280,7 @@ onSelect(itemCode: string, itemName: string, retailPrice: number, qty: number = 
 
 
 
-       // ตรวจดู
+        // ตรวจดู
         console.log(this.share.sumCart)
         this.onAlert();
     }

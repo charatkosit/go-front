@@ -13,73 +13,86 @@ declare var $: any;
 })
 export class CnListComponent implements OnInit {
 
-  customer_code = environment.user_code;
-  invoice: Invoice[] = [];
-
-  sumCN: number = 0;
-  isdata: boolean = false;
-
   constructor(
-
     private router: Router,
     private sap: SapService,
     public share: ShareService) { }
 
+  //-----------ประกาศตัวแปร----------------
+  data_filter: any = this.share.CN;
+  sumCN: number = this.share.sum_CN;
+  lastUpdated: any = this.share.lastUpdate;
+  timeString!: string;
+  //-------------------------------------
+
+
 
   ngOnInit() {
 
-    this.sap.getSapInvoice(this.customer_code)
-      .subscribe((res: ApiInvoice) => {
+    setInterval(() => {
+      this.updateTimeString();
+    }, 1000);
 
-        const data_filter = res.data.filter(resf => {
-          return resf.DocType.includes('CN')
-        })
-        this.sumCN = data_filter.reduce((acc, item) => acc + parseFloat(item.DocTotal), 0);
-        this.share.sum_CN = this.sumCN;
-        this.isdata = true;
-        $(document).ready(() => {
-          var table = $('#example1').DataTable({
-            stateSave: true,
-            data: data_filter,
-            columns: [
-              { data: 'DocType', title: 'DocTypes', className: "text-center" },
-              { data: 'TaxDate', title: 'วันที่ออก', className: "text-center" },
-              { data: 'FullTaxNumber' },
-              { data: 'ShipToName' },
-              {
-                data: 'DocTotal', title: 'ราคารวม', className: 'text-right',
-                render: function (data: any) {
-                  var number = $.fn.dataTable.render
-                    .number(',', '.', 2, '')
-                    .display(data);
-                  return number;
-                }
-              },
-              {
-                title: 'Actions',
-                className: 'text-center',
-                data: null,
-                render: function (data: any, type: any, row: any) {
-                  console.log(`tax is ${row.FullTaxNumber}`);
-                  return '<button class="btn btn-primary btn-details" data-fulltaxnumber="' + row.FullTaxNumber + '">รายละเอียด</button>';
-                }
-              },
-            ]
-          });
-
-          $(document).on('click', '.btn-details', () => {
-            var fullTaxNumber = $(event?.target).data('fulltaxnumber');
-            this.share.taxNumber = fullTaxNumber;
-            console.log(`when click: ${fullTaxNumber}`);
-            this.router.navigate(['/cn-details'])
-          });
-        });
-
+    $(document).ready(() => {
+      var table = $('#example1').DataTable({
+        stateSave: true,
+        data: this.data_filter,
+        columns: [
+          { data: 'DocType', title: 'DocTypes', className: "text-center" },
+          { data: 'TaxDate', title: 'วันที่ออก', className: "text-center" },
+          { data: 'FullTaxNumber' },
+          { data: 'ShipToName' },
+          {
+            data: 'DocTotal', title: 'ราคารวม(VAT)', className: 'text-right',
+            render: function (data: any) {
+              var number = $.fn.dataTable.render
+                .number(',', '.', 2, '')
+                .display(data);
+              return number;
+            }
+          },
+          {
+            title: 'Actions',
+            className: 'text-center',
+            data: null,
+            render: function (data: any, type: any, row: any) {
+              // console.log(`tax is ${row.FullTaxNumber}`);
+              return '<button class="btn btn-primary btn-details" data-fulltaxnumber="' + row.FullTaxNumber + '">รายละเอียด</button>';
+            }
+          },
+        ]
       });
+
+      $(document).on('click', '.btn-details', () => {
+        var fullTaxNumber = $(event?.target).data('fulltaxnumber');
+        this.share.taxNumber = fullTaxNumber;
+        console.log(`when click: ${fullTaxNumber}`);
+        this.router.navigate(['/cn-details'])
+      });
+    });
+
 
 
   }
 
+
+
+  updateTimeString() {
+    const lastUpdate = new Date(this.lastUpdated); // เวลา lastUpdate ที่จะเปรียบเทียบกับเวลาปัจจุบัน
+    const currentTime = new Date();
+
+    const seconds = Math.floor((currentTime.getTime() - lastUpdate.getTime()) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+
+    if (hours > 0) {
+      this.timeString = `${hours} ชั่วโมงที่แล้ว`;
+    } else if (minutes > 0) {
+      this.timeString = `${minutes} นาทีที่แล้ว`;
+    } else {
+      this.timeString = `${seconds} วินาทีที่แล้ว`;
+    }
+  }
 
 
 }

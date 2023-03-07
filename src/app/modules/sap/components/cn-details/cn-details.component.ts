@@ -51,9 +51,10 @@ export class CnDetailsComponent implements OnInit {
           ordering: false,
           columns: [
             { data: 'ItemCode' },
-            { data: 'ItemName' },
+            { data: 'ItemName', title: 'รายการ' },
             {
               data: 'Quantity',
+              title: 'จำนวน',
               className: "text-right",
               render: function (data: any) {
                 var number = $.fn.dataTable.render
@@ -64,6 +65,7 @@ export class CnDetailsComponent implements OnInit {
             },
             {
               data: 'Price',
+              title: 'ราคา',
               className: "text-right",
               render: function (data: any) {
                 var number = $.fn.dataTable.render
@@ -74,6 +76,7 @@ export class CnDetailsComponent implements OnInit {
             },
             {
               data: 'DiscPrcnt',
+              title: 'ส่วนลด %',
               className: "text-right",
               render: function (data: any) {
                 var number = $.fn.dataTable.render

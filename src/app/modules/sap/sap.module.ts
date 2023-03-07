@@ -11,6 +11,7 @@ import { CnDetailsComponent } from './components/cn-details/cn-details.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InvoiceTempComponent } from './components/invoice-temp/invoice-temp.component';
 import { CheckDiscountComponent } from './components/check-discount/check-discount.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CheckDiscountComponent } from './components/check-discount/check-discou
     CnDetailsComponent,
     DashboardComponent,
     InvoiceTempComponent,
-    CheckDiscountComponent
+    CheckDiscountComponent,
+    DeliveryComponent
   ],
   imports: [
     CommonModule,

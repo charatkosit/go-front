@@ -13,22 +13,26 @@ declare var $: any;
 })
 export class InvoiceDetailsComponent implements OnInit {
 
+  constructor(private sap: SapService,
+    private location: Location,
+    public share: ShareService) { }
+
+
+  //-----------ประกาศตัวแปร----------------
   customer_code = environment.user_code;
   taxnumber = this.share.taxNumber;
   doctype = 'INV';
   // sumInv:number = 0;
 
   data: boolean = false;
+  //--------------------------------------
 
-  constructor(private sap: SapService,
-              private location:Location,
-              public share: ShareService) { }
 
   ngOnInit(): void {
-   
-    
+
+
     console.log(`tax is  :  ${this.share.taxNumber}`)
-    this.sap.getSapInvoiceDetails(this.customer_code,this.taxnumber, this.doctype)
+    this.sap.getSapInvoiceDetails(this.customer_code, this.taxnumber, this.doctype)
       .subscribe((res: ApiInvoiceDetails) => {
 
         const data_filter = res.data;
@@ -45,64 +49,70 @@ export class InvoiceDetailsComponent implements OnInit {
           ordering: false,
           columns: [
             { data: 'ItemCode' },
-            { data: 'ItemName' },
-            { data: 'Quantity',
-            title:  'จำนวน',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 0, '')
-              .display(data);
-              return number;
+            { data: 'ItemName', title: 'รายการ' },
+            {
+              data: 'Quantity',
+              title: 'จำนวน',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 0, '')
+                  .display(data);
+                return number;
+              }
+            },
+            {
+              data: 'Price',
+              title: 'ราคา',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 2, '')
+                  .display(data);
+                return number;
+              }
+            },
+            {
+              data: 'DiscPrcnt',
+              title: 'ส่วนลด %',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 2, '')
+                  .display(data);
+                return number;
+              }
+            },
+            {
+              data: 'LineTotal',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 2, '')
+                  .display(data);
+                return number;
+              }
+            },
+            {
+              data: 'BillDisAmt',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 2, '')
+                  .display(data);
+                return number;
+              }
+            },
+            {
+              data: 'LineTotalAfterBillDisc',
+              className: "text-right",
+              render: function (data: any) {
+                var number = $.fn.dataTable.render
+                  .number(',', '.', 2, '')
+                  .display(data);
+                return number;
+              }
             }
-          },
-            { data: 'Price',
-            title: 'ราคา',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 2, '')
-              .display(data);
-              return number;
-            }
-          },
-            { data: 'DiscPrcnt',
-            title: 'ส่วนลด %',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 2, '')
-              .display(data);
-              return number;
-            }
-          },
-            { data: 'LineTotal',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 2, '')
-              .display(data);
-              return number;
-            }
-          },
-            {data: 'BillDisAmt',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 2, '')
-              .display(data);
-              return number;
-            }
-          },
-            {data: 'LineTotalAfterBillDisc',
-            className: "text-right",
-            render: function (data:any){
-              var number = $.fn.dataTable.render
-              .number(',', '.', 2, '')
-              .display(data);
-              return number;
-            }
-          }
 
 
           ]
@@ -114,7 +124,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
 
-  onClickBack(){
+  onClickBack() {
     this.location.back();
   }
 

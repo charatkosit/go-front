@@ -11,7 +11,7 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class CheckDiscountComponent implements OnInit {
 
-
+//-----------------------ประกาศตัวแปร--------------------------
   myCart: SumOrder[] = [];  //รายการสินค้าใน ตระกร้าที่ต้องการดู ส่วนลด
 
   // สำหรับ กำหนด ตัวแปร  
@@ -68,10 +68,11 @@ export class CheckDiscountComponent implements OnInit {
       }
     ]
   }
-  // -----------------------------
+  // ------------------------------------------------------
+
+
   constructor(public share: ShareService,
-              private router: Router
-    ) { }
+              private router: Router) { }
 
 
 

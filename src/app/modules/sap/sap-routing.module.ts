@@ -5,6 +5,7 @@ import { CheckDiscountComponent } from './components/check-discount/check-discou
 import { CnDetailsComponent } from './components/cn-details/cn-details.component';
 import { CnListComponent } from './components/cn-list/cn-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
 import { InvoiceTempComponent } from './components/invoice-temp/invoice-temp.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
+      { path: "delivery",         component: DeliveryComponent,    canActivate: [AuthGuard] },
       { path: "invoice-list",     component: InvoiceListComponent,    canActivate: [AuthGuard] },
       { path: "invoice-details",  component: InvoiceDetailsComponent, canActivate: [AuthGuard] },
       { path: "invoice-temp",     component: InvoiceTempComponent,    canActivate: [AuthGuard] },

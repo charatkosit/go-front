@@ -5,11 +5,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">ประจำเดือน มี.ค.65</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
@@ -28,8 +28,11 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h4>{{sumINV | number}}</h4>
-
-                <p>Invoice</p>
+                <h4>Invoice</h4>
+               
+                  <h5>{{nINV}}</h5>
+                 
+               
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -44,7 +47,8 @@
               <div class="inner">
                 <h4>{{sumCN | number}}</h4>
 
-                <p>Credit Note</p>
+                <h4>Credit Note</h4>
+                <h5>{{nCN}}</h5>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -59,7 +63,7 @@
               <div class="inner">
                 <h4>44</h4>
 
-                <p>User Registrations</p>
+                <p>Credit Limit</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -74,7 +78,7 @@
               <div class="inner">
                 <h4>65</h4>
 
-                <p>Unique Visitors</p>
+                <p>Due Soon</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

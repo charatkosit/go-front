@@ -7,9 +7,17 @@ import { PO, SumOrder } from '../interfaces/PO';
 export class ShareService {
   constructor() { }
 
-  customer_code: string ='ยังไม่กำหนด';
+  customer_code: string ='10008690100';
   sum_INV: number = 0;
   sum_CN:  number = 0;
+
+  n_Inv: number = 0;
+  n_CN: number = 0
+  
+  INV: any ='';
+  CN: any ='';
+
+  lastUpdate: any;
   
   cart:string[] = [];   // สำหรับเก็บ barcode สินค้าที่ต้องการมาเช็ค ส่วนลด
   count:number = 0;
