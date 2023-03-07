@@ -125,7 +125,7 @@
                       <td>{{part.ItemCode}}</td>
                       <td>{{part.ItemCodeNew}}</td>
                       <td>{{part.Model}}</td>
-                      <td>{{part.RetailPrice}}</td>
+                      <td class="text-right">{{part.RetailPrice | number: '1.2-2'}}</td>
                       <td><button type="button" (click)="onSelect(part.ItemCode, part.ItemName, part.RetailPrice)"
                           class="btn btn-outline-primary btn-block toastrDefaultSuccess"><i
                             class="fas fa-cart-plus"></i><b>

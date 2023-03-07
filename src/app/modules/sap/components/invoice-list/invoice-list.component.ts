@@ -18,14 +18,19 @@ declare var $: any;
 export class InvoiceListComponent implements OnInit {
 
   customer_code = environment.user_code;
+  invoice: Invoice[] = [];
+
   sumInv: number = 0;
-  data: boolean = false;
+  isdata: boolean = false;
+
 
   constructor(private sap: SapService,
     private router: Router,
-    private share: ShareService) { }
+    public share: ShareService) { }
 
   ngOnInit() {
+
+
 
     this.sap.getSapInvoice(this.customer_code)
       .subscribe((res: ApiInvoice) => {
@@ -35,56 +40,51 @@ export class InvoiceListComponent implements OnInit {
         })
         this.sumInv = data_filter.reduce((acc, item) => acc + parseFloat(item.DocTotal), 0);
         this.share.sum_INV = this.sumInv;
-        this.data = true;
+        this.isdata = true;
+        $(document).ready(() => {
+          var table = $('#example1').DataTable({
+            stateSave: true,
+            data: data_filter,
+            columns: [
+              { data: 'DocType', title: 'DocTypes', className: "text-center" },
+              { data: 'TaxDate', title: 'วันที่ออก' },
+              { data: 'FullTaxNumber' },
+              { data: 'ShipToName' },
+              {
+                data: 'DocTotal', title: 'ราคารวม' ,className: 'text-right',
+                render: function (data: any) {
+                  var number = $.fn.dataTable.render
+                    .number(',', '.', 2, '')
+                    .display(data);
+                  return number;
+                }
+              },
+              {
+                title: 'Actions',
+                className: 'text-center',
+                data: null,
+                render: function (data: any, type: any, row: any) {
+                  console.log(`tax is ${row.FullTaxNumber}`);
+                  return '<button class="btn btn-primary btn-details" data-fulltaxnumber="' + row.FullTaxNumber + '">รายละเอียด</button>';
+                }
+              },
+            ]
+          });
 
-        // console.log(data_filter)
-        console.log(`sum INV is ${this.sumInv}`)
-
-        $('#example1').DataTable({
-          stateSave: true,
-          data: data_filter,
-
-
-          columns: [
-            { data: 'DocType' },
-            { data: 'TaxDate' },
-            { data: 'FullTaxNumber' },
-
-            { data: 'ShipToName' },
-            {
-              data: 'DocTotal',
-              className: "text-right",
-              render: function (data: any) {
-                var number = $.fn.dataTable.render
-                  .number(',', '.', 2, '')
-                  .display(data);
-                return number;
-              }
-            },
-            {  
-              "data": null,
-              "render": function (data: any, type: any, row: { id: string; }) {
-                const path ='/invoice-details'
-                return `<a routerLink="${path}" class="nav-link">Details</a>`
-                // return `<a href="/invoice-details/${data.FullTaxNumber}" class="nav-link"> Details </a> `
-                // return '<a routerLink="/invoice-details/' + row.id + '">' + data + '</a>';
-                // return '<a href="/invoice-details" class="nav-link">'+ 'Details' + '</a>'
-                // return '<a routerLink="/invoice-details" class="nav-link">'+ 'Details' + '</a>'
-                // return '<a href="http://example.com/user/' + row.id + '">' + data + '</a>';
-            }    
-            },
-          ]
-
-
+          $(document).on('click', '.btn-details', () => {
+            var fullTaxNumber = $(event?.target).data('fulltaxnumber');
+            this.share.taxNumber = fullTaxNumber;
+            console.log(`when click: ${fullTaxNumber}`);
+            this.router.navigate(['/invoice-details'])
+          });
         });
 
       });
 
+
   }
 
 
-  onClickDetails(){
-     console.log("click Details")
-  }
+
 
 }

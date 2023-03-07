@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ShareService } from 'src/app/services/share.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,24 +11,30 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  project:string ='';
-  sapUrl:string = '';
-  release:string = '';
-  user: string = '';
- constructor(private router:Router, public auth:AuthService) { }
+  constructor(private router: Router,
+    public share: ShareService,
+    public auth: AuthService) { }
 
- ngOnInit(): void {
+  //-----ประกาศตัวแปร--------  
+  project: string = '';
+  sapUrl: string = '';
+  release: string = '';
+  user: string = '';
+  currentUser: string = this.share.currentUser;
+  //------------------------
+
+  ngOnInit(): void {
     this.project = environment.project;
     this.sapUrl = environment.sapUrl;
     this.release = environment.release;
     this.user = environment.user;
- }
+  }
 
 
- onClickSignOut(){
-   localStorage.removeItem(environment.loginResult)
-   this.router.navigate(["/login"])
- }
+  onClickSignOut() {
+    localStorage.removeItem(environment.loginResult)
+    this.router.navigate(["/login"])
+  }
 
 
 

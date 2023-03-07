@@ -5,7 +5,8 @@ import { PO, SumOrder } from '../interfaces/PO';
   providedIn: 'root'
 })
 export class ShareService {
-  
+  constructor() { }
+
   customer_code: string ='ยังไม่กำหนด';
   sum_INV: number = 0;
   sum_CN:  number = 0;
@@ -32,5 +33,13 @@ export class ShareService {
   
 //สำหรับ ส่ง TaxNumber เมื่อกดปุ่ม  หน้า  invoice-temp เพื่อดู invoice-detail
  taxNumber: string ='';
-  constructor() { }
+  
+
+
+//สำหรับ เก็บว่า user login ด้วยสถานะใด เช่น  admin หรือ member
+currentUser:string ='member';
+
 }
+
+
+

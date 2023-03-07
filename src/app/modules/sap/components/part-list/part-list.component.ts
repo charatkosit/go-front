@@ -94,9 +94,8 @@ export class PartListComponent implements OnInit {
                 "paging": true,
                 "info": false,
                 "ordering": false,
-
-
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "dom": 'Bfrtip',
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md:eq(0)');
 
         });

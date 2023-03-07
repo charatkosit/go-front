@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 import { CheckDiscountComponent } from './components/check-discount/check-discount.component';
 import { CnDetailsComponent } from './components/cn-details/cn-details.component';
 import { CnListComponent } from './components/cn-list/cn-list.component';
@@ -13,15 +14,15 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: "invoice-list",    component: InvoiceListComponent },
-      { path: "invoice-details", component: InvoiceDetailsComponent },
-      { path: "invoice-temp",    component: InvoiceTempComponent },
-      { path: "cn-list",         component: CnListComponent },
-      { path: "cn-details",      component: CnDetailsComponent },
-      { path: "part-list",       component: PartListComponent },
-      { path: "check-discount",  component: CheckDiscountComponent },
-      { path: "dashboard",       component: DashboardComponent },
-      { path: '',           redirectTo: 'dashboard', pathMatch: 'full'}
+      { path: "invoice-list",     component: InvoiceListComponent,    canActivate: [AuthGuard] },
+      { path: "invoice-details",  component: InvoiceDetailsComponent, canActivate: [AuthGuard] },
+      { path: "invoice-temp",     component: InvoiceTempComponent,    canActivate: [AuthGuard] },
+      { path: "cn-list",          component: CnListComponent,         canActivate: [AuthGuard] },
+      { path: "cn-details",       component: CnDetailsComponent,      canActivate: [AuthGuard] },
+      { path: "part-list",        component: PartListComponent,       canActivate: [AuthGuard] },
+      { path: "check-discount",   component: CheckDiscountComponent,  canActivate: [AuthGuard] },
+      { path: "dashboard",        component: DashboardComponent,      canActivate: [AuthGuard] },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }];
 

@@ -112,8 +112,8 @@
                                   </ng-template>
             
                                 </td>
-                                <td class="text-right">{{item.RetailPrice}}</td>
-                                <td class="text-right">{{item.SumRetailPrice}}</td>
+                                <td class="text-right">{{item.RetailPrice | number:'1.2-2'}}</td>
+                                <td class="text-right">{{item.SumRetailPrice | number:'1.2-2'}}</td>
                                 <td class="text-right">ส่วนลด {{item.Discount| number:'1.2-2'}} % <br>
                                                        ลดตาม {{item.BillDiscount}} %</td>
                                 <td class="text-right">{{item.Subtotal | number:'2.2-2'}}</td>

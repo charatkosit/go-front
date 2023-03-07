@@ -122,20 +122,28 @@ export class CheckDiscountComponent implements OnInit {
 
 
 
-
 //เมื่อเปลี่ยนจำนวน ให้คำนวณ ใหม่ทั้งหมด
   onChangeQty(index: number, ev: any) {
+
+    // เปลี่ยนจำนวนที่ เมนูซ้ายด้วย 
+  
+
 
     console.log(`ev.target.value: ${ev.target.value}`)
     let qty = ev.target.value;
 
 
     console.log(`index: ${index}`)
-    this.billDiscount = 2.6667
+    // this.billDiscount = 0;  // <-------ให้เอาค่าจาก  this.share.-------------*******
+    // เมื่อมีการกดเปลี่ยน 
+
+
     this.share.sumCart[index].Qty = qty;
     this.share.sumCart[index].SumRetailPrice = this.share.sumCart[index].Qty * this.share.sumCart[index].RetailPrice
     this.share.sumCart[index].Subtotal = this.share.sumCart[index].SumRetailPrice * (1 - this.share.sumCart[index].Discount / 100)
-    this.share.sumCart[index].SumBillDiscount = this.share.sumCart[index].Subtotal * this.billDiscount / 100
+    this.share.sumCart[index].SumBillDiscount = this.share.sumCart[index].Subtotal * this.share.sumCart[index].BillDiscount / 100
+    // this.share.sumCart[index].SumBillDiscount = this.share.sumCart[index].Subtotal * this.billDiscount / 100
+
     // let co = 0; 
     // this.share.count = Number(this.share.sumCart.forEach( x =>  co += x.Qty))
     this.myCart[index] = this.share.sumCart[index]
@@ -297,9 +305,9 @@ export class CheckDiscountComponent implements OnInit {
     this.isEditable = false
     this.share.sumCart = this.myCartHistory;
     this.myCart = this.share.sumCart;
-    alert(JSON.stringify(this.myCartHistory))
-    alert(JSON.stringify(this.share.sumCart))
-    alert(JSON.stringify(this.myCart))
+    // alert(JSON.stringify(this.myCartHistory))
+    // alert(JSON.stringify(this.share.sumCart))
+    // alert(JSON.stringify(this.myCart))
     this.myCart.forEach(x => x.Checked = false)
 
     this.share.sumCart.forEach(x => {

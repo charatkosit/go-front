@@ -24,9 +24,13 @@ export class InvoiceTempComponent implements OnInit {
 
   constructor(private sap: SapService,
     private router: Router,
-    public share: ShareService) { }
+    public share: ShareService) {
+
+  }
 
   ngOnInit() {
+
+
 
     this.sap.getSapInvoice(this.customer_code)
       .subscribe((res: ApiInvoice) => {
@@ -37,7 +41,6 @@ export class InvoiceTempComponent implements OnInit {
         this.sumInv = data_filter.reduce((acc, item) => acc + parseFloat(item.DocTotal), 0);
         this.share.sum_INV = this.sumInv;
         this.isdata = true;
-
         $(document).ready(() => {
           var table = $('#example1').DataTable({
             stateSave: true,
@@ -53,40 +56,37 @@ export class InvoiceTempComponent implements OnInit {
                 className: 'text-center',
                 data: null,
                 render: function (data: any, type: any, row: any) {
-                  return `<button class="btn btn-primary" onclick="onButtonClick('${row.FullTaxNumber}')">รายละเอียด</button>`
+                  console.log(`tax is ${row.FullTaxNumber}`);
+                  return '<button class="btn btn-primary btn-details" data-fulltaxnumber="' + row.FullTaxNumber + '">รายละเอียด</button>';
                 }
               },
-            ],
+            ]
+          });
 
-          }).data;
-          return table
+          $(document).on('click', '.btn-details', () => {
+            var fullTaxNumber = $(event?.target).data('fulltaxnumber');
+            this.share.taxNumber = fullTaxNumber;
+            console.log(`when click: ${fullTaxNumber}`);
+            this.router.navigate(['/invoice-details'])
+          });
         });
-
-
 
       });
 
+
   }
 
 
 
 
-  onClickDetails() {
-    console.log("click Details")
-  }
-
-  onButtonClick(FullTaxNumber:string ) {
-    // this.router.navigate(['/invoice-detail'])
-  
-  console.log(`TaxNumber-> ${FullTaxNumber}`)
-} 
-
-  ngAfterViewInit(): void {
-    // ใส่โค้ดที่ต้องการให้โหลดหลังจากวิวเสร็จสมบูรณ์
-  
- 
-  
-  }
 
 
 }
+
+function onButtonClick(myNum: any, any: any) {
+  throw new Error('Function not implemented.');
+}
+// function onButtonClick(FullTaxNumber: any) {
+//   throw new Error('Function not implemented.');
+// }
+

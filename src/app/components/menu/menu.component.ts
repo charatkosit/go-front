@@ -9,14 +9,27 @@ import { environment } from 'src/environments/environment';
 })
 export class MenuComponent implements OnInit {
 
-  user:string = '';
-
   constructor(public share: ShareService) { }
 
+// --------ประกาศตัวแปร-------------
+  user:string = '';
+  isAdmin:boolean = false;
+//---------------------------------
   ngOnInit(): void {
     this.user = environment.user;
+    this.getStatusAdmin();
    
-   
+  }
+
+   getStatusAdmin(){
+
+    if(this.share.currentUser==='admin'){
+      this.isAdmin =  true;
+    }else {
+      this.isAdmin = false;
+    }
+    
+    
   }
 
 }

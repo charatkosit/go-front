@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContentComponent } from './components/content/content.component';
+import { AuthGuard } from './guards/auth.guard';
 import { ChangepwdComponent } from './modules/auth/components/changepwd/changepwd.component';
 import { ForgotpwdComponent } from './modules/auth/components/forgotpwd/forgotpwd.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';

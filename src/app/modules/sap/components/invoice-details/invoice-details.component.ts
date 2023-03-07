@@ -14,7 +14,7 @@ declare var $: any;
 export class InvoiceDetailsComponent implements OnInit {
 
   customer_code = environment.user_code;
-  taxnumber = 'LIV130201266';
+  taxnumber = this.share.taxNumber;
   doctype = 'INV';
   // sumInv:number = 0;
 
@@ -22,10 +22,12 @@ export class InvoiceDetailsComponent implements OnInit {
 
   constructor(private sap: SapService,
               private location:Location,
-              private share: ShareService) { }
+              public share: ShareService) { }
 
   ngOnInit(): void {
-
+   
+    
+    console.log(`tax is  :  ${this.share.taxNumber}`)
     this.sap.getSapInvoiceDetails(this.customer_code,this.taxnumber, this.doctype)
       .subscribe((res: ApiInvoiceDetails) => {
 
@@ -45,6 +47,7 @@ export class InvoiceDetailsComponent implements OnInit {
             { data: 'ItemCode' },
             { data: 'ItemName' },
             { data: 'Quantity',
+            title:  'จำนวน',
             className: "text-right",
             render: function (data:any){
               var number = $.fn.dataTable.render
@@ -54,6 +57,7 @@ export class InvoiceDetailsComponent implements OnInit {
             }
           },
             { data: 'Price',
+            title: 'ราคา',
             className: "text-right",
             render: function (data:any){
               var number = $.fn.dataTable.render
@@ -63,6 +67,7 @@ export class InvoiceDetailsComponent implements OnInit {
             }
           },
             { data: 'DiscPrcnt',
+            title: 'ส่วนลด %',
             className: "text-right",
             render: function (data:any){
               var number = $.fn.dataTable.render
