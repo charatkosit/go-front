@@ -18,7 +18,9 @@ export class AuthService {
 
   isLoggedIn() {
     let loginResult = localStorage.getItem(environment.loginResult);
-    return (loginResult != null && loginResult == 'ok');
+    let customerCodeResult = localStorage.getItem(environment.user_code);
+
+    return (loginResult != null && loginResult == 'ok' && customerCodeResult != '');
   }
 
 

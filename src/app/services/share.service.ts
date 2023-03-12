@@ -47,6 +47,7 @@ export class ShareService {
 //สำหรับ เก็บว่า user login ด้วยสถานะใด เช่น  admin หรือ member
 currentUser:string ='member';
 
+access_token:string ='';
 }
 
 

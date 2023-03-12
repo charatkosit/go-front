@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
 
   constructor(private router: Router,
     public share: ShareService,
@@ -19,20 +20,30 @@ export class HeaderComponent implements OnInit {
   project: string = '';
   sapUrl: string = '';
   release: string = '';
-  user: string = '';
+  user_name!: string | null;
   currentUser: string = this.share.currentUser;
+  permission!: string | null;
   //------------------------
 
   ngOnInit(): void {
-    this.project = environment.project;
-    this.sapUrl = environment.sapUrl;
-    this.release = environment.release;
-    this.user = environment.user;
+
+
+    
   }
 
+  ngAfterViewChecked() {
+    this.user_name = localStorage.getItem(environment.user_name)
+    this.permission = localStorage.getItem(environment.permission)
+
+  }
 
   onClickSignOut() {
-    localStorage.removeItem(environment.loginResult)
+    localStorage.removeItem(environment.loginResult);
+    localStorage.removeItem(environment.access_token);
+    localStorage.removeItem(environment.user_code);
+    localStorage.removeItem(environment.user_name);
+    localStorage.removeItem(environment.permission);
+
     this.router.navigate(["/login"])
   }
 

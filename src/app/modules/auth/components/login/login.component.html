@@ -61,7 +61,7 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg"><b>Login</b> to start your session</p>
   
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="input-group mb-3">
               <input type="email" class="form-control" placeholder="Email" formControlName="Email">
               <div class="input-group-append">

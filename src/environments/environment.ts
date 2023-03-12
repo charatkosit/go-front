@@ -10,10 +10,18 @@ export const environment = {
   backendUrl: "http://127.0.0.1:3000/",
   sapUrl:"http://192.168.20.17:8880/",
   sapApiToken:"z@hz3sNY#0ohB9SspeE9@fLDQ%r65x$k8LxL28VH72FfvRWgCn",
+  access_token:"",
   project: "Build Dev:v0.1.4f on 27/01/23",
   release: "dev ",
-  user: "บจก. พิชิต-ชุติมา",
-  user_code: "10008690100"
+  user_name: "user_name",
+  user_code: "user_code",
+  permission: "permission",
+
+  sumINV: 0,
+  sumCN:  0,
+  nINV:   0,
+  nCN:    0,
+  lastUpdate: ""
 
 
 

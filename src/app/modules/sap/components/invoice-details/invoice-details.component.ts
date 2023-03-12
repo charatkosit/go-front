@@ -19,19 +19,17 @@ export class InvoiceDetailsComponent implements OnInit {
 
 
   //-----------ประกาศตัวแปร----------------
-  customer_code = environment.user_code;
+  customer_code:any = localStorage.getItem(environment.user_code)
   taxnumber = this.share.taxNumber;
   doctype = 'INV';
-  // sumInv:number = 0;
-
   data: boolean = false;
   //--------------------------------------
 
 
   ngOnInit(): void {
 
-
-    console.log(`tax is  :  ${this.share.taxNumber}`)
+    // console.log(`customer_code is ${this.customer_code}`)
+    // console.log(`tax is  :  ${this.share.taxNumber}`)
     this.sap.getSapInvoiceDetails(this.customer_code, this.taxnumber, this.doctype)
       .subscribe((res: ApiInvoiceDetails) => {
 
@@ -85,6 +83,7 @@ export class InvoiceDetailsComponent implements OnInit {
             },
             {
               data: 'LineTotal',
+              title: 'ยอดรวม',
               className: "text-right",
               render: function (data: any) {
                 var number = $.fn.dataTable.render
@@ -95,6 +94,7 @@ export class InvoiceDetailsComponent implements OnInit {
             },
             {
               data: 'BillDisAmt',
+              title: 'ส่วนลดท้ายบิล',
               className: "text-right",
               render: function (data: any) {
                 var number = $.fn.dataTable.render

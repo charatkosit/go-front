@@ -6,8 +6,11 @@ export const environment = {
   backendUrl: "%backendUrl%",
   sapUrl:"%sapUrl%",
   sapApiToken:"%sapApiToken%",
+  access_token:"",
   project: "Build %stage%:%timestamp%",
   release: "%release%",
-  user: "บจก. พิชิต-ชุติมา",
-  user_code: "10008690100"
+  user_name: "user_name",
+  user_code: "user_code",
+  permission: "permission"
+
 };

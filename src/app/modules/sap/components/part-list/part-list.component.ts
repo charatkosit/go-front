@@ -36,7 +36,8 @@ export class PartListComponent implements OnInit {
     modelForm = new FormControl();
     totalFound: number = 0;
 
-    customer_code = this.share.customer_code;
+    // customer_code = this.share.customer_code;
+    customer_code:any = localStorage.getItem(environment.user_code)
     discount: number = 0;
     billDiscount: number = 0;
     specialPrice: number = 0;
