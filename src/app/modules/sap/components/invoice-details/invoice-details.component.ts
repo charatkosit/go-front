@@ -23,6 +23,9 @@ export class InvoiceDetailsComponent implements OnInit {
   taxnumber = this.share.taxNumber;
   doctype = 'INV';
   data: boolean = false;
+  subTotal = 0;
+  taxVAT = 0;
+  grandTotal = 0;
   //--------------------------------------
 
 
@@ -34,7 +37,15 @@ export class InvoiceDetailsComponent implements OnInit {
       .subscribe((res: ApiInvoiceDetails) => {
 
         const data_filter = res.data;
+        this.subTotal = data_filter.reduce((acc, item) => acc + parseFloat(item.LineTotalAfterBillDisc), 0);
+        console.log(`sumInvDetail ${this.subTotal}`)
 
+        //คำนวณ VAT
+        this.taxVAT = this.subTotal * 0.07;
+
+        //ราคารวม VAT
+        this.grandTotal = this.subTotal * 1.07;
+     
         $('#example1').DataTable({
           stateSave: true,
           data: data_filter,

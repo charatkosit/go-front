@@ -65,6 +65,33 @@
               <!-- /.card-body -->
             </div>
 
+            <div class="row">
+              <div class="col-8">
+              </div>
+  
+              <div class="col-4">
+                <p class="lead">Amount Due 2/22/2014</p>
+  
+                <div class="table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th style="width:50%">ราคารวม:</th>
+                      <td class="text-right">{{subTotal | number: '1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <th>VAT (7.0%)</th>
+                      <td class="text-right">{{taxVAT | number: '1.2-2'}}</td>
+                    </tr>
+  
+                    <tr>
+                      <th>ราคาทั้งสิ้น:</th>
+                      <td class="text-right">{{grandTotal | number: '1.2-2'}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
             <div>
               <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;"
                 (click)="onClickBack()">

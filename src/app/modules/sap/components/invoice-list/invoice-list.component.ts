@@ -69,7 +69,7 @@ export class InvoiceListComponent implements OnInit {
       $(document).on('click', '.btn-details', () => {
         var fullTaxNumber = $(event?.target).data('fulltaxnumber');
         this.share.taxNumber = fullTaxNumber;
-        console.log(`when click: ${fullTaxNumber}`);
+        // console.log(`when click: ${fullTaxNumber}`);
         this.router.navigate(['/invoice-details'])
       });
     });

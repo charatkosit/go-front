@@ -24,6 +24,10 @@ export class CnDetailsComponent implements OnInit {
   taxnumber = this.share.taxNumber;
   doctype = 'CN';
   // sumInv:number = 0;
+  subTotal = 0;
+  taxVAT = 0;
+  grandTotal = 0;
+
 
   data: boolean = false;
   isdata: boolean = false;
@@ -38,6 +42,15 @@ export class CnDetailsComponent implements OnInit {
       .subscribe((res: ApiInvoiceDetails) => {
         this.isdata = true;   //ข้อมูลจาก api ได้รับแล้ว
         const data_filter = res.data;
+
+        this.subTotal = data_filter.reduce((acc, item) => acc + parseFloat(item.LineTotalAfterBillDisc), 0);
+        console.log(`sumInvDetail ${this.subTotal}`)
+
+        //คำนวณ VAT
+        this.taxVAT = this.subTotal * 0.07;
+
+        //ราคารวม VAT
+        this.grandTotal = this.subTotal * 1.07;
 
         $('#example1').DataTable({
           stateSave: true,

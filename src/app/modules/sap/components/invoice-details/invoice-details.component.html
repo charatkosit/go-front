@@ -1,80 +1,109 @@
 <div class="content-wrapper">
 
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Invoice Details</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Invoice List</li>
-              <li class="breadcrumb-item active">Invoice Details</li>
-            </ol>
-          </div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Invoice Details</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-  
-  
-  
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-  
-  
-  
-            </div>
-            <!-- /.card -->
-  
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">{{taxnumber}}</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th class="text-center">ItemCode</th>
-                      <th class="text-center">ItemName</th>
-                      <th class="text-center">Quantity</th>
-                      <th class="text-center">Price</th>
-                      <th class="text-center">DiscPrcnt</th>
-                      <th class="text-center">LineTotal</th>
-                      <th class="text-center">BillDisAmt</th>
-                      <th class="text-center">LineTotalAfterBillDisc</th>
-                     
-                
-                    </tr>
-                  </thead>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Invoice List</li>
+            <li class="breadcrumb-item active">Invoice Details</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+
+
+
+          <div class="card">
+            <div class="col-sm-6">
+              <h3>test</h3>
+
+            </div>
+          </div>
+
+
+          <!-- /.card -->
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{taxnumber}}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center">ItemCode</th>
+                    <th class="text-center">ItemName</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">DiscPrcnt</th>
+                    <th class="text-center">LineTotal</th>
+                    <th class="text-center">BillDisAmt</th>
+                    <th class="text-center">LineTotalAfterBillDisc</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <!-- /.card-body -->
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+            </div>
+
+            <div class="col-4">
+              <p class="lead">Amount Due 2/22/2014</p>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <tr>
+                    <th style="width:50%">Subtotal:</th>
+                    <td class="text-right">{{subTotal | number: '1.2-2'}}</td>
+                  </tr>
+                  <tr>
+                    <th>VAT (7.0%)</th>
+                    <td class="text-right">{{taxVAT | number: '1.2-2'}}</td>
+                  </tr>
+
+                  <tr>
+                    <th>ราคารวม VAT:</th>
+                    <td class="text-right">{{grandTotal | number: '1.2-2'}}</td>
+                  </tr>
                 </table>
               </div>
-              <!-- /.card-body -->
             </div>
-
-            <div>
-              <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" (click)="onClickBack()">
-                <i class="fa fa-arrow-left"></i> back
-              </button>
-            </div>
-            
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
+
+
+          <div>
+            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;"
+              (click)="onClickBack()">
+              <i class="fa fa-arrow-left"></i> back
+            </button>
+          </div>
+
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  
-  
-
-
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
