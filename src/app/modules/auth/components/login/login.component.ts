@@ -100,6 +100,19 @@ export class LoginComponent implements OnInit {
 
         console.log(`codeUserId is ${codeUserId}`)
         this.prepareDataDashboard(codeUserId);
+
+
+        if(codeUserId !='no_assign'){
+          localStorage.setItem(environment.loginResult, "ok")
+          this.router.navigate(["/dashboard"])
+          return
+        } else {
+
+          localStorage.setItem(environment.loginResult, "loginResult")
+          this.router.navigate(["/login"])
+    
+
+        }
       });
 
     }) 
@@ -107,8 +120,8 @@ export class LoginComponent implements OnInit {
 
     // ตรวจสอบว่า เคยมี email นี้อยู่หรือไม่ 
     // ถ้ามี แจ้ง ว่าเคยมี  
-    localStorage.setItem(environment.loginResult, "ok")
-    this.router.navigate(["/dashboard"])
+    // localStorage.setItem(environment.loginResult, "ok")
+    // this.router.navigate(["/dashboard"])
 
   }
 

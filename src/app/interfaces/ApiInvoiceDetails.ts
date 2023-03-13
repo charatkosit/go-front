@@ -5,7 +5,6 @@ export interface ApiInvoiceDetails {
 }
 
 export interface InvDetails {
-    DocTotal: string;
     ItemCode:               string;
     ItemName:               string;
     Quantity:               string;

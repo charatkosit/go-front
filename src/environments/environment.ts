@@ -13,7 +13,7 @@ export const environment = {
   access_token:"",
   project: "Build Dev:v0.1.4f on 27/01/23",
   release: "dev ",
-  user_name: "user_name",
+  user_name: "no_assign",
   user_code: "user_code",
   permission: "permission",
 
